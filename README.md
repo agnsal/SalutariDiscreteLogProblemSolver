@@ -49,7 +49,7 @@ Then:
     
 and so on...
 
-We verify at every step is b<sub>i</sub> is a power of a, until it is true. 
+We verify at every step if b<sub>i</sub> is a power of a, until it is true. 
 
 At this z-th step (the last one), we have: 
 
