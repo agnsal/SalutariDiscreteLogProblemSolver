@@ -271,6 +271,9 @@ class DiscreteLogProblemSolver:
         '''
         print('Solving a^(x) = b (mod n) --> a^(x - stepsNumber) = a^(y) (mod n).')
         solved = False
+        y = self.isBaPerfectPowerOfA()
+        if y:  # If b is a perfect power of a
+            solved = True
         a = self.getDL().getA()
         if a == 0:
             print('a = 0, 0^(x) = 0 = b for every integer x')
@@ -281,7 +284,6 @@ class DiscreteLogProblemSolver:
         simp = self.simplify()
         if simp:
             self.printDiscreteLogProblem()
-        print('phi(n) = ' + str(self.getDL().getPhi()))
         y = self.isBaPerfectPowerOfA()
         if y: # If b is a perfect power of a
             solved = True
