@@ -201,6 +201,9 @@ class DiscreteLogProblemSolver:
         p = self.getDL().getB()
         n = self.getDL().getN()
         supLimitOfB = a * supLimitOrderOfB
+        if a == 1:
+            print('a = 1')
+            return
         while p % a == 0:
             y += 1
             p = p / a
@@ -352,4 +355,3 @@ class DiscreteLogProblemSolver:
         file = open(filePath, 'a')
         file.write(str(a) + '^(' + str(sol) + ') = ' + str(ver) + ' = b = ' + str(b) + ' (mod ' + str(n) + ').\n')
         file.close()
-
