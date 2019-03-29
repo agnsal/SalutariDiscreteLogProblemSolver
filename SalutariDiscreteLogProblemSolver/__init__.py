@@ -203,7 +203,7 @@ class DiscreteLogProblemSolver:
         supLimitOfB = a * supLimitOrderOfB
         if a == 1:
             print('a = 1')
-            return
+            return y
         while p % a == 0:
             y += 1
             p = p / a
