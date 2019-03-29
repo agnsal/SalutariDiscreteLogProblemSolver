@@ -160,13 +160,11 @@ class DiscreteLogProblemSolver:
         b = self.getDL().getB()
         n = self.getDL().getN()
         gcd = math.gcd(a, n)
-        # print('mcd = ' + str(gcd)) # Test
         if not gcd == 1: # If a and n are not coprime
             newN = int(n / gcd)
             # print('newN = ' + str(newN)) # Test
             newA = a % newN
             newB = b % newN
-            self.getDL().setN(newN=newN)
             self.getDL().setA(newA=newA)
             self.getDL().setB(newB=newB)
             self.getDL().setN(newN=newN)
@@ -203,14 +201,8 @@ class DiscreteLogProblemSolver:
         p = self.getDL().getB()
         n = self.getDL().getN()
         supLimitOfB = a * supLimitOrderOfB
-        if a == 1:
-            print('a = 1')  # Test
-            return y
-        if p == 1:
-            print('b = 1')  # Test
-            return y
         while p % a == 0:
-            y +=1
+            y += 1
             p = p / a
             # print('y = ' + str(y)) # Test
             # print('p = ' + str(p)) # Test
@@ -224,7 +216,7 @@ class DiscreteLogProblemSolver:
             self.getDL().setB(newB=p)
             return y
         while p % a == 0:
-            y +=1
+            y += 1
             p = p / a
             # print('y = ' + str(y)) # Test
             # print('p = ' + str(p)) # Test
@@ -243,12 +235,13 @@ class DiscreteLogProblemSolver:
         x = self.getDL().getX()
         newSolutions = [x]
         n = self.getDL().getN()
+        print('n ' + str(n))
         originalN = self.getOriginalDL().getN()
         while x + n - 1 < originalN:
             x = x + n - 1  # Here n is a prime -> phi(n) = n - 1
             newSolutions.append(x)
         self.setSolutions(newSolutions=newSolutions)
-        print('Solution: x = ' + str(newSolutions) + ' (mod ' + str(n) + ').')
+        print('Solution: x = ' + str(newSolutions) + ' (mod ' + str(originalN) + ').')
 
     def computeX(self, y=None):
         '''
@@ -275,16 +268,12 @@ class DiscreteLogProblemSolver:
         if a == 0:
             print('a = 0, 0^(x) = 0 = b for every integer x')
             return
-        y = self.isBaPerfectPowerOfA()
-        if y:  # If b is a perfect power of a
-            solved = True
-        if a == 1:
+        elif a == 1:
             print('a = 1, 1^(x) = 1 = b for every integer x')
             return
-        if not y:
-            simp = self.simplify()
-            if simp:
-                self.printDiscreteLogProblem()
+        simp = self.simplify()
+        if simp:
+            self.printDiscreteLogProblem()
         y = self.isBaPerfectPowerOfA()
         if y: # If b is a perfect power of a
             solved = True
@@ -363,3 +352,4 @@ class DiscreteLogProblemSolver:
         file = open(filePath, 'a')
         file.write(str(a) + '^(' + str(sol) + ') = ' + str(ver) + ' = b = ' + str(b) + ' (mod ' + str(n) + ').\n')
         file.close()
+
