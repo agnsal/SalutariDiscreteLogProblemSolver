@@ -281,9 +281,10 @@ class DiscreteLogProblemSolver:
         if a == 1:
             print('a = 1, 1^(x) = 1 = b for every integer x')
             return
-        simp = self.simplify()
-        if simp:
-            self.printDiscreteLogProblem()
+        if not y:
+            simp = self.simplify()
+            if simp:
+                self.printDiscreteLogProblem()
         y = self.isBaPerfectPowerOfA()
         if y: # If b is a perfect power of a
             solved = True
