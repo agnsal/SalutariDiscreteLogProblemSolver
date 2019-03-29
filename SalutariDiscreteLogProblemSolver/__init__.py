@@ -82,7 +82,7 @@ class DiscreteLogProblemSolver:
         a^(x) = b (mod n)
         We know a, b and n; we have to find x.
         Salutari's Algorithm solve the problem, step by step, using the following formula:
-            a^(x - stepsNumber) = (b - a) * a^(-1) + 1 (mod n)
+            a^(x - stepsNumber) = b * a^(-1) (mod n)
         It finds x when it reaches the final form, that is the following:
             a^(x - stepsNumber) = a^(y) (mod n)
             => x = y + stepsNumber
@@ -176,7 +176,7 @@ class DiscreteLogProblemSolver:
     def step(self):
         '''
         Performs a step, that changes DL's b as follows:
-            b = (b - a) * a^(-1) + 1
+            newb = b * a^(-1)
         :return:
         '''
         self.incrStepsNumber()
@@ -184,11 +184,9 @@ class DiscreteLogProblemSolver:
         a = self.getDL().getA()
         b = self.getDL().getB()
         n = self.getDL().getN()
-        delta = (b - a)
-        print('delta = ' + str(delta))
         invA = sympy.mod_inverse(a, n)
         print('a^(-1) = ' + str(invA) + ' (mod ' + str(n) + ').')
-        newB = (delta * invA + 1)
+        newB = b * invA
         self.getDL().setB(newB=newB)
 
     def isBaPerfectPowerOfA(self, supLimitOrderOfB=10 ** 64):
