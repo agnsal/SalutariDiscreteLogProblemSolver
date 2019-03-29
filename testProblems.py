@@ -25,7 +25,7 @@ import sympy
         a^(x) = b (mod n)
         We know a, b and n; we have to find x.
         Salutari's algorithm solve the problem, step by step, using the following formula:
-            a^(x - stepsNumber) = (b - a) * a^(-1) + 1 (mod n)
+            a^(x - stepsNumber) = b * a^(-1) (mod n)
         It finds x when it reaches the final form, that is the following:
             a^(x - stepsNumber) = a^(y) (mod n)
             => x = y + stepsNumber
