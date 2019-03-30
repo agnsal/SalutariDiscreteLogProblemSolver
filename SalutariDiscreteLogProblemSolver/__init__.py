@@ -40,7 +40,6 @@ class DiscreteLogarithm: # a^(x) = b (mod n)
         self.a = a % n
         self.b = b % n
         self.n = n
-        self.simplification = 1
 
     def setA(self, newA=1):
         assert isinstance(newA, int)
