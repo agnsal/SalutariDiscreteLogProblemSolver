@@ -64,7 +64,7 @@ Then:
 
   x = y + z
   
-The final form is always reachable because b is obtained like a power of a (mod n) for definition.
+The final form is always reachable because b is obtained like a power of a (mod n) by definition.
 
 
 ### Demonstration: Case 2) n is the product of two primes (n = p1 * p2) and it's not coprime with a:
