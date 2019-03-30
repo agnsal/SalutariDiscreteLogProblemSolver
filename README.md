@@ -2,8 +2,11 @@
 Python 3 library that uses Agnese Salutari's Algorithm to solve Discrete Logarithm Problems.
 
 ## The Problem:
-Given a, b and n, find x such that:
-a<sup>x</sup> = b (mod n)
+Given a, b and n, find the exponent x that has been used to obtain b starting from a:
+
+  a<sup>x</sup> = b (mod n)
+  
+where a and b are integers, x is a prime number and n is a prime (n = p) or the product of two prime numbers (n = p1 * p2).
 
 ## Salutari's Algorithm:
 Salutari's Algorithm solves the problem, step by step, using the following formula:
