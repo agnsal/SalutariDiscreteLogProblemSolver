@@ -6,7 +6,7 @@ Given a, b and n, find the exponent x that has been used to obtain b starting fr
 
   a<sup>x</sup> = b (mod n)
   
-where a and b are integers, x is a prime number and n is a prime (n = p) or the product of two prime numbers (n = p1 * p2).
+where a and b are integers, x is an integer and n is a prime (n = p) or the product of two prime numbers (n = p1 * p2).
 
 ## Salutari's Algorithm:
 Salutari's Algorithm solves the problem, step by step, using the following formula:
