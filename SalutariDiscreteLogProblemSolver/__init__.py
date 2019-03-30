@@ -15,8 +15,8 @@ See the License for the specific language governing permissions and limitations 
 __author__ = 'Agnese Salutari'
 
 # Dependencies:
-import sympy
 import math
+import sympy
 
 class DiscreteLogarithm: # a^(x) = b (mod n)
     '''
@@ -171,44 +171,39 @@ class DiscreteLogProblemSolver:
             print('a and n are not coprime: for Chinese Remainder Theorem, the problem can be written modulus ' + str(gcd))
         return gcd
 
-    def step(self):
+    def step(self, invA=1):
         '''
         Performs a step, that changes DL's b as follows:
             newb = b * a^(-1)
+        :param invA: integer; the inverse of a (mod n).
         :return:
         '''
+        assert isinstance(invA, int)
         self.incrStepsNumber()
         print('#### Step: ' + str(self.getStepsNumber()))
-        a = self.getDL().getA()
         b = self.getDL().getB()
         n = self.getDL().getN()
-        invA = sympy.mod_inverse(a, n)
         print('a^(-1) = ' + str(invA) + ' (mod ' + str(n) + ').')
         newB = b * invA
         self.getDL().setB(newB=newB)
 
-    def isBaPerfectPowerOfA(self, supLimitOrderOfB=10 ** 64):
+    def isBaPerfectPowerOfA(self):
         '''
         Verifies if b is a power of a, that is:
             b = a^(y).
-        :param supLimitOrderOfB: positive number, b as to be less than a * supLimitOrderOfB.
         :return:
         '''
-        assert(supLimitOrderOfB > 0)
         # First we try with b not simplified (mod n)
         y = 0
         a = self.getDL().getA()
         p = self.getDL().getB()
         n = self.getDL().getN()
-        supLimitOfB = a * supLimitOrderOfB
         if a == 1:
             print('a = 1')
             return y
         while p % a == 0:
             y += 1
             p = p / a
-            # print('y = ' + str(y)) # Test
-            # print('p = ' + str(p)) # Test
         if int(p) == 1:
             print('Final form reached: a^(x - stepsNumber) = a^(y) (mod n).')
             return y
@@ -216,17 +211,12 @@ class DiscreteLogProblemSolver:
         y = 0
         p = self.getDL().getB() % n
         if p == 1:
-            self.getDL().setB(newB=p)
             return y
         while p % a == 0:
             y += 1
             p = p / a
-            # print('y = ' + str(y)) # Test
-            # print('p = ' + str(p)) # Test
         if int(p == 1):
             print('Final form reached: a^(x - stepsNumber) = a^(y) (mod n).')
-            if self.getDL().getB() > supLimitOfB:
-                self.getDL().setB(newB=self.getDL().getB() % n)
             return y
         return False
 
@@ -281,8 +271,10 @@ class DiscreteLogProblemSolver:
         if y: # If b is a perfect power of a
             solved = True
         while not solved:
+            n = self.getDL().getN()
             self.printDiscreteLogProblem()
-            self.step()
+            invA = sympy.mod_inverse(a, n)
+            self.step(invA=invA)
             self.printDiscreteLogProblem()
             y = self.isBaPerfectPowerOfA()
             if y: # If b is a perfect power of a
