@@ -15,7 +15,7 @@ Salutari's Algorithm solves the problem, step by step, using the following formu
 
   a<sup>(x - i)</sup> = b<sub>i</sub> (mod n)
 
-Where i is an integer that is equal to the number of the current step of the Algorithm.
+where i is an integer that is equal to the number of the current step of the Algorithm.
 
 The Algorithm needs to perform these steps until it reaches the final form, that is the following:
 
@@ -30,7 +30,7 @@ Then:
 It works if n is a prime (n = p) and if n is the product of two primes (n = p1 * p2).
 
 ### Demonstration: Case 1) n is a prime (n = p):
-Then a is invertible (mod n), so the Algoritm works.
+n is a prime number, so n is coprime with a, then a is invertible (mod n).
 
   a<sup>x</sup> = b<sub>0</sub> (mod n)
 
@@ -63,6 +63,9 @@ Where y is an integer.
 Then: 
 
   x = y + z
+  
+The final form is always reachable because b is obtained like a power of a (mod n) for definition.
+
 
 ### Demonstration: Case 2) n is the product of two primes (n = p1 * p2) and it's not coprime with a:
   a<sup>x</sup> = b (mod n)
@@ -89,7 +92,7 @@ We can solve the second equation (mod p2), that is a Case 1) problem, and then f
 
   x = x1 + (j * (p1 - 1)) mod (n)
     
- where phi(p1) = p1 - 1 is the Euler Totient Function of p1.
+ where phi(p1) = p1 - 1 is the Euler Totient Function of the prime number p1.
            
 ## Contacts
 
